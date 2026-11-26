@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions targetNamespace="urn:sap-com:document:sap:rfc:functions" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+ xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/"
+ xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:tns="urn:sap-com:document:sap:rfc:functions">
+ <wsdl:types>
+  <xsd:schema attributeFormDefault="qualified" targetNamespace="urn:sap-com:document:sap:rfc:functions">
+   <xsd:simpleType name="char10"><xsd:restriction base="xsd:string"><xsd:maxLength value="10"/></xsd:restriction></xsd:simpleType>
+   <xsd:simpleType name="curr13.2"><xsd:restriction base="xsd:decimal"><xsd:totalDigits value="13"/><xsd:fractionDigits value="2"/></xsd:restriction></xsd:simpleType>
+   <xsd:complexType name="ZFI_S_ITEM"><xsd:sequence>
+     <xsd:element name="BELNR" type="tns:char10"/><xsd:element name="WRBTR" type="tns:curr13.2"/></xsd:sequence></xsd:complexType>
+   <xsd:complexType name="ZFI_TT_ITEM"><xsd:sequence>
+     <xsd:element name="item" type="tns:ZFI_S_ITEM" minOccurs="0" maxOccurs="unbounded"/></xsd:sequence></xsd:complexType>
+   <xsd:complexType name="BAPIRET2"><xsd:sequence><xsd:element name="TYPE" type="xsd:string"/><xsd:element name="MESSAGE" type="xsd:string"/></xsd:sequence></xsd:complexType>
+   <xsd:element name="ZFI_GET_ITEMS">
+    <xsd:complexType><xsd:sequence>
+      <xsd:element name="IV_BUKRS" type="tns:char10"/>
+      <xsd:element name="IV_GJAHR" type="tns:char10" minOccurs="0"/>
+      <xsd:element name="IT_ITEMS" type="tns:ZFI_TT_ITEM" minOccurs="0"/>
+    </xsd:sequence></xsd:complexType>
+   </xsd:element>
+   <xsd:element name="ZFI_GET_ITEMSResponse">
+    <xsd:complexType><xsd:sequence><xsd:element name="ES_RETURN" type="tns:BAPIRET2"/></xsd:sequence></xsd:complexType>
+   </xsd:element>
+  </xsd:schema>
+ </wsdl:types>
+ <wsdl:message name="ZFI_GET_ITEMS"><wsdl:part name="parameters" element="tns:ZFI_GET_ITEMS"/></wsdl:message>
+ <wsdl:message name="ZFI_GET_ITEMSResponse"><wsdl:part name="parameter" element="tns:ZFI_GET_ITEMSResponse"/></wsdl:message>
+ <wsdl:portType name="ZFI_WS_ITEMS"><wsdl:operation name="ZFI_GET_ITEMS"><wsdl:input message="tns:ZFI_GET_ITEMS"/><wsdl:output message="tns:ZFI_GET_ITEMSResponse"/></wsdl:operation></wsdl:portType>
+ <wsdl:binding name="ZFI_WS_ITEMS" type="tns:ZFI_WS_ITEMS">
+  <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/>
+  <wsdl:operation name="ZFI_GET_ITEMS"><soap:operation soapAction="urn:sap-com:document:sap:rfc:functions:ZFI_WS_ITEMS:ZFI_GET_ITEMSRequest" style="document"/>
+   <wsdl:input><soap:body use="literal"/></wsdl:input><wsdl:output><soap:body use="literal"/></wsdl:output></wsdl:operation>
+ </wsdl:binding>
+ <wsdl:service name="ZFI_WS_ITEMS"><wsdl:port name="ZFI_WS_ITEMS" binding="tns:ZFI_WS_ITEMS"><soap:address location="http://localhost:8765/soap/sap"/></wsdl:port></wsdl:service>
+</wsdl:definitions>

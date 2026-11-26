@@ -1,0 +1,55 @@
+### CalculatorSoap / Add (SOAP 1.1, document)
+### endpoints: http://localhost:8765/soap/calc
+### Content-Type: text/xml;charset=UTF-8
+### SOAPAction: "http://tempuri.org/Add"
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:tem="http://tempuri.org/">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <tem:Add>
+         <tem:intA>?</tem:intA>
+         <tem:intB>?</tem:intB>
+         <!--Optional:-->
+         <tem:note>?</tem:note>
+         <!--Zero or more repetitions:-->
+         <tem:tag>?</tem:tag>
+      </tem:Add>
+   </soapenv:Body>
+</soapenv:Envelope>
+
+### CalculatorSoap / Ping (SOAP 1.1, document)
+### endpoints: http://localhost:8765/soap/calc
+### Content-Type: text/xml;charset=UTF-8
+### SOAPAction: "http://tempuri.org/Ping"
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:tem="http://tempuri.org/">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <tem:Ping/>
+   </soapenv:Body>
+</soapenv:Envelope>
+
+### CalculatorSoap12 / Add (SOAP 1.2, document)
+### endpoints: http://localhost:8765/soap/calc
+### Content-Type: application/soap+xml;charset=UTF-8;action="http://tempuri.org/Add"
+<soapenv:Envelope xmlns:soapenv="http://www.w3.org/2003/05/soap-envelope" xmlns:tem="http://tempuri.org/">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <tem:Add>
+         <tem:intA>?</tem:intA>
+         <tem:intB>?</tem:intB>
+         <!--Optional:-->
+         <tem:note>?</tem:note>
+         <!--Zero or more repetitions:-->
+         <tem:tag>?</tem:tag>
+      </tem:Add>
+   </soapenv:Body>
+</soapenv:Envelope>
+
+### CalculatorSoap12 / Ping (SOAP 1.2, document)
+### endpoints: http://localhost:8765/soap/calc
+### Content-Type: application/soap+xml;charset=UTF-8;action="http://tempuri.org/Ping"
+<soapenv:Envelope xmlns:soapenv="http://www.w3.org/2003/05/soap-envelope" xmlns:tem="http://tempuri.org/">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <tem:Ping/>
+   </soapenv:Body>
+</soapenv:Envelope>

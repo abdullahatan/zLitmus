@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+  xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:ord="http://firma.com/siparis" xmlns:hdr="http://firma.com/ortak"
+  xmlns:tns="http://firma.com/siparis/wsdl" targetNamespace="http://firma.com/siparis/wsdl">
+  <wsdl:types>
+    <xs:schema><xs:import namespace="http://firma.com/siparis" schemaLocation="xsd/siparis.xsd"/></xs:schema>
+  </wsdl:types>
+  <wsdl:message name="SiparisOlusturIn"><wsdl:part name="body" element="ord:SiparisOlustur"/><wsdl:part name="auth" element="hdr:Kimlik"/></wsdl:message>
+  <wsdl:message name="SiparisOlusturOut"><wsdl:part name="body" element="ord:SiparisOlusturYanit"/></wsdl:message>
+  <wsdl:portType name="SiparisPT"><wsdl:operation name="SiparisOlustur"><wsdl:input message="tns:SiparisOlusturIn"/><wsdl:output message="tns:SiparisOlusturOut"/></wsdl:operation></wsdl:portType>
+  <wsdl:binding name="SiparisBinding" type="tns:SiparisPT"><soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="SiparisOlustur"><soap:operation soapAction="SiparisOlustur"/>
+      <wsdl:input><soap:header message="tns:SiparisOlusturIn" part="auth" use="literal"/><soap:body parts="body" use="literal"/></wsdl:input>
+      <wsdl:output><soap:body use="literal"/></wsdl:output></wsdl:operation></wsdl:binding>
+  <wsdl:service name="SiparisServisi"><wsdl:port name="SiparisPort" binding="tns:SiparisBinding"><soap:address location="http://localhost:8765/soap/fault"/></wsdl:port></wsdl:service>
+</wsdl:definitions>

@@ -1,0 +1,5 @@
+* text=auto eol=lf
+*.png binary
+*.ico binary
+*.html linguist-detectable=false
+web/** linguist-vendored

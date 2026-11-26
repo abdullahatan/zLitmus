@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:o="http://firma.com/siparis" xmlns:c="http://firma.com/ortak"
+  targetNamespace="http://firma.com/siparis" elementFormDefault="qualified">
+  <xs:complexType name="BelgeTip"><xs:sequence><xs:element name="BelgeNo" type="xs:string"/></xs:sequence>
+    <xs:attribute name="surum" type="xs:string" use="optional"/></xs:complexType>
+  <xs:complexType name="SiparisTip"><xs:complexContent><xs:extension base="o:BelgeTip"><xs:sequence>
+    <xs:element name="Musteri" type="c:TarafTip"/>
+    <xs:choice><xs:element name="Kargo" type="xs:string"/><xs:element name="Teslim" type="xs:string"/></xs:choice>
+    <xs:element name="Kalem" maxOccurs="unbounded"><xs:complexType><xs:sequence>
+      <xs:element name="Malzeme" type="xs:string"/><xs:element name="Miktar" type="o:MiktarTip"/></xs:sequence></xs:complexType></xs:element>
+    <xs:element name="AltSiparis" type="o:SiparisTip" minOccurs="0"/>
+  </xs:sequence></xs:extension></xs:complexContent></xs:complexType>
+  <xs:complexType name="MiktarTip"><xs:simpleContent><xs:extension base="xs:decimal"><xs:attribute name="birim" type="xs:string" use="required"/></xs:extension></xs:simpleContent></xs:complexType>
+</xs:schema>

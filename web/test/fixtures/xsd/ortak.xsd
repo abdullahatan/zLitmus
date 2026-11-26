@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://firma.com/ortak" elementFormDefault="unqualified">
+  <xs:element name="Not" type="xs:string"/>
+  <xs:element name="Kimlik"><xs:complexType><xs:sequence><xs:element name="Kullanici" type="xs:string"/><xs:element name="Anahtar" type="xs:string"/></xs:sequence></xs:complexType></xs:element>
+  <xs:complexType name="TarafTip"><xs:sequence><xs:element name="Vkn" type="xs:string"/><xs:element name="Unvan" type="xs:string" minOccurs="0"/><xs:any minOccurs="0"/></xs:sequence></xs:complexType>
+</xs:schema>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:o="http://firma.com/siparis" xmlns:c="http://firma.com/ortak"
+  targetNamespace="http://firma.com/siparis" elementFormDefault="qualified">
+  <xs:import namespace="http://firma.com/ortak" schemaLocation="../xsd/ortak.xsd"/>
+  <xs:include schemaLocation="siparis-tipler.xsd"/>
+  <xs:element name="SiparisOlustur">
+    <xs:complexType><xs:sequence>
+      <xs:element name="Siparis" type="o:SiparisTip"/>
+      <xs:element ref="c:Not" minOccurs="0"/>
+    </xs:sequence></xs:complexType>
+  </xs:element>
+  <xs:element name="SiparisOlusturYanit"><xs:complexType><xs:sequence><xs:element name="No" type="xs:string"/></xs:sequence></xs:complexType></xs:element>
+</xs:schema>

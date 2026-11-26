@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<definitions name="Kur" targetNamespace="http://example.com/kur" xmlns:tns="http://example.com/kur" xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+  xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns="http://schemas.xmlsoap.org/wsdl/">
+  <types><xsd:schema targetNamespace="http://example.com/kur">
+    <xsd:complexType name="Tarih"><xsd:sequence><xsd:element name="gun" type="xsd:int"/><xsd:element name="ay" type="xsd:int"/></xsd:sequence></xsd:complexType>
+  </xsd:schema></types>
+  <message name="GetKurRequest"><part name="doviz" type="xsd:string"/><part name="tarih" type="tns:Tarih"/></message>
+  <message name="GetKurResponse"><part name="kur" type="xsd:decimal"/></message>
+  <portType name="KurPortType"><operation name="GetKur"><input message="tns:GetKurRequest"/><output message="tns:GetKurResponse"/></operation></portType>
+  <binding name="KurBinding" type="tns:KurPortType"><soap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <operation name="GetKur"><soap:operation soapAction="urn:GetKur"/>
+      <input><soap:body use="encoded" namespace="urn:kur" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/></input>
+      <output><soap:body use="encoded" namespace="urn:kur" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/></output></operation></binding>
+  <service name="KurService"><port name="KurPort" binding="tns:KurBinding"><soap:address location="http://localhost:8765/soap/rpc"/></port></service>
+</definitions>

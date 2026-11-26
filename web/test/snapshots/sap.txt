@@ -1,0 +1,22 @@
+### ZFI_WS_ITEMS / ZFI_GET_ITEMS (SOAP 1.1, document)
+### endpoints: http://localhost:8765/soap/sap
+### Content-Type: text/xml;charset=UTF-8
+### SOAPAction: "urn:sap-com:document:sap:rfc:functions:ZFI_WS_ITEMS:ZFI_GET_ITEMSRequest"
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:urn="urn:sap-com:document:sap:rfc:functions">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <urn:ZFI_GET_ITEMS>
+         <IV_BUKRS>?</IV_BUKRS>
+         <!--Optional:-->
+         <IV_GJAHR>?</IV_GJAHR>
+         <!--Optional:-->
+         <IT_ITEMS>
+            <!--Zero or more repetitions:-->
+            <item>
+               <BELNR>?</BELNR>
+               <WRBTR>?</WRBTR>
+            </item>
+         </IT_ITEMS>
+      </urn:ZFI_GET_ITEMS>
+   </soapenv:Body>
+</soapenv:Envelope>

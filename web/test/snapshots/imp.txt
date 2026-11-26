@@ -1,0 +1,38 @@
+### SiparisBinding / SiparisOlustur (SOAP 1.1, document)
+### endpoints: http://localhost:8765/soap/fault
+### Content-Type: text/xml;charset=UTF-8
+### SOAPAction: "SiparisOlustur"
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:hdr="http://firma.com/ortak" xmlns:ord="http://firma.com/siparis">
+   <soapenv:Header>
+      <hdr:Kimlik>
+         <Kullanici>?</Kullanici>
+         <Anahtar>?</Anahtar>
+      </hdr:Kimlik>
+   </soapenv:Header>
+   <soapenv:Body>
+      <ord:SiparisOlustur>
+         <ord:Siparis surum="?">
+            <ord:BelgeNo>?</ord:BelgeNo>
+            <ord:Musteri>
+               <Vkn>?</Vkn>
+               <!--Optional:-->
+               <Unvan>?</Unvan>
+               <!--You may enter ANY elements at this point-->
+            </ord:Musteri>
+            <!--You have a CHOICE of the next 2 items at this level-->
+            <ord:Kargo>?</ord:Kargo>
+            <ord:Teslim>?</ord:Teslim>
+            <!--1 or more repetitions:-->
+            <ord:Kalem>
+               <ord:Malzeme>?</ord:Malzeme>
+               <ord:Miktar birim="?">?</ord:Miktar>
+            </ord:Kalem>
+            <!--Optional:-->
+            <!--Recursive type (SiparisTip), not expanded-->
+            <ord:AltSiparis/>
+         </ord:Siparis>
+         <!--Optional:-->
+         <hdr:Not>?</hdr:Not>
+      </ord:SiparisOlustur>
+   </soapenv:Body>
+</soapenv:Envelope>

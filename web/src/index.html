@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="zlitmus" content="1.1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>zLitmus</title>
+<!-- @favicon assets/logo/zlitmus-logo/favicon/favicon.svg -->
+<style>
+<!-- @include styles.css -->
+</style>
+</head>
+<body>
+<div id="unsupported" class="unsupported" hidden>
+  <h1>zLitmus</h1>
+  <p>zLitmus için SAP GUI tarayıcı denetimi Edge (WebView2) olmalı: SAP GUI Seçenekleri &gt; Etkileşim Tasarımı &gt;
+     Denetim Ayarları &gt; Tarayıcı Denetimi.</p>
+  <p>zLitmus needs the Edge (WebView2) browser control: SAP GUI Options &gt; Interaction Design &gt;
+     Control Settings &gt; Browser Control.</p>
+</div>
+
+<div id="app" class="app">
+  <header class="topbar">
+    <div class="brand"><!-- @svg assets/logo/zlitmus-logo/svg/lockup/zlitmus-horizontal-on-dark.svg --></div>
+    <nav id="menubar" class="menubar" role="menubar"></nav>
+    <button id="themeSwitch" type="button" class="theme-switch" role="switch" aria-checked="false">
+      <span class="ts-label"></span>
+      <span class="ts-icon sun"><svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true"><circle cx="12" cy="12" r="4.5" fill="currentColor"/><g stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 1.5v3M12 19.5v3M1.5 12h3M19.5 12h3M4.6 4.6l2.1 2.1M17.3 17.3l2.1 2.1M4.6 19.4l2.1-2.1M17.3 6.7l2.1-2.1"/></g></svg></span>
+      <span class="ts-track"><span class="ts-knob"></span></span>
+      <span class="ts-icon moon"><svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true"><path fill="currentColor" d="M20.5 14.6A8.5 8.5 0 0 1 9.4 3.5a8.5 8.5 0 1 0 11.1 11.1z"/></svg></span>
+      <span class="ts-state"></span>
+    </button>
+    <div id="sessionInfo" class="session"></div>
+  </header>
+  <div id="toolbar" class="toolbar" role="toolbar"></div>
+  <main id="main" class="main">
+    <aside id="side" class="side">
+      <section id="navPanel" class="panel navigator">
+        <div class="panel-title" data-i18n="nav.title"></div>
+        <div id="tree" class="tree" role="tree" tabindex="0"></div>
+      </section>
+      <div id="sideSplit" class="splitter h"></div>
+      <section id="propsPanel" class="panel properties">
+        <div class="panel-title" data-i18n="props.title"></div>
+        <div id="props"></div>
+      </section>
+    </aside>
+    <div id="mainSplit" class="splitter v"></div>
+    <section id="workspace" class="workspace">
+      <div id="tabs" class="tabs" role="tablist"></div>
+      <div id="tabBody" class="tab-body"></div>
+    </section>
+  </main>
+  <div id="logSplit" class="splitter h"></div>
+  <footer id="logPanel" class="logpanel">
+    <div id="logTabs" class="tabs small" role="tablist"></div>
+    <div id="logBody" class="log-body"></div>
+  </footer>
+  <div id="statusbar" class="statusbar"></div>
+</div>
+
+<div id="modalRoot"></div>
+<div id="popupRoot"></div>
+<div id="busy" class="busy" hidden><div class="busy-box"><span class="spinner"></span><span id="busyText"></span></div></div>
+<div id="toast" class="toast" hidden></div>
+
+<template id="lockupTemplate"><!-- @svg assets/logo/zlitmus-logo/svg/lockup/zlitmus-horizontal-tagline.svg --></template>
+<template id="lockupDarkTemplate"><!-- @svg assets/logo/zlitmus-logo/svg/lockup/zlitmus-horizontal-tagline-on-dark.svg --></template>
+<template id="markTemplate"><!-- @svg assets/logo/zlitmus-logo/svg/mark-small/zlitmus-mark-small.svg --></template>
+
+<form id="bridgeForm" method="POST" target="zlitmus-sink" hidden><textarea name="payload"></textarea></form>
+<iframe id="zlitmus-sink" name="zlitmus-sink" title="sink" hidden></iframe>
+
+<script id="zlitmus-boot" type="application/json">__ZLITMUS_BOOT__</script>
+<!-- @fixtures web/test/fixtures -->
+
+<script>
+/* Runs in every browser control (also the old IE one): the page needs a modern engine. */
+(function () {
+  var ok = false;
+  try {
+    ok = typeof Promise !== 'undefined' && typeof TextEncoder !== 'undefined' &&
+         typeof DOMParser !== 'undefined' && !!Object.assign;
+  } catch (e) { ok = false; }
+  window.ZL_SUPPORTED = ok;
+  if (!ok) {
+    document.getElementById('app').style.display = 'none';
+    var note = document.getElementById('unsupported');
+    note.removeAttribute('hidden');
+    note.style.display = 'block';
+  }
+})();
+</script>
+<script>
+'use strict';
+<!-- @include util.js -->
+<!-- @include i18n.js -->
+<!-- @include soap/xml.js -->
+<!-- @include soap/wsdl.js -->
+<!-- @include soap/generator.js -->
+<!-- @include state.js -->
+<!-- @include bridge.js -->
+<!-- @include mock.js -->
+<!-- @include ui/dialogs.js -->
+<!-- @include ui/menu.js -->
+<!-- @include ui/toolbar.js -->
+<!-- @include ui/navigator.js -->
+<!-- @include ui/properties.js -->
+<!-- @include ui/log.js -->
+<!-- @include ui/start.js -->
+<!-- @include ui/request.js -->
+<!-- @include ui/binding.js -->
+<!-- @include ui/tabs.js -->
+<!-- @include app.js -->
+if (window.ZL_SUPPORTED) { ZL.App.start(); }
+</script>
+</body>
+</html>

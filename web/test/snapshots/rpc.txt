@@ -1,0 +1,16 @@
+### KurBinding / GetKur (SOAP 1.1, rpc)
+### endpoints: http://localhost:8765/soap/rpc
+### Content-Type: text/xml;charset=UTF-8
+### SOAPAction: "urn:GetKur"
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:urn="urn:kur">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <urn:GetKur>
+         <doviz>?</doviz>
+         <tarih>
+            <gun>?</gun>
+            <ay>?</ay>
+         </tarih>
+      </urn:GetKur>
+   </soapenv:Body>
+</soapenv:Envelope>
